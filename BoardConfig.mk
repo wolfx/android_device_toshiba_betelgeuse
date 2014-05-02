@@ -16,6 +16,9 @@ TARGET_CPU_SMP := true
 TARGET_NO_BOOTLOADER := true
 TARGET_BOOTLOADER_BOARD_NAME := betelgeuse
 
+TARGET_PREBUILT_KERNEL := vendor/toshiba/betelgeuse/kernel
+TARGET_NO_KERNEL := false
+
 ARCH_ARM_HAVE_TLS_REGISTER := true
 
 #BOARD_USES_HGL := true
