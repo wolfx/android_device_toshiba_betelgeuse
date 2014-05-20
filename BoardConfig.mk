@@ -16,7 +16,8 @@ TARGET_CPU_SMP := true
 TARGET_NO_BOOTLOADER := true
 TARGET_BOOTLOADER_BOARD_NAME := betelgeuse
 BUILD_KERNEL := true
-TARGET_PROVIDES_INIT_RC := true
+#TARGET_PROVIDES_INIT_RC := true
+TARGET_PROVIDES_INIT_TARGET_RC := true
 
 ARCH_ARM_HAVE_TLS_REGISTER := true
 
@@ -29,9 +30,6 @@ TARGET_NO_RADIOIMAGE := true
 
 # Use Old Style USB Mounting Untill we get kernel source
 BOARD_USE_USB_MASS_STORAGE_SWITCH := true
-
-# custom recovery ui
-BOARD_CUSTOM_RECOVERY_KEYMAPPING := ../../device/toshiba/betelgeuse/recovery/recovery_ui.c
 
 # Wifi related defines
 #CONFIG_DRIVER_AR6000 := true
@@ -54,6 +52,10 @@ BOARD_HAVE_BLUETOOTH_BCM := true
 #BOARD_HAVE_BLUETOOTH_CSR := true
 
 BOARD_KERNEL_CMDLINE := no_console_suspend=1 console=tty0,115200n8 video=tegrafb androidboot.hardware=betelgeuse
+
+TARGET_RECOVERY_PIXEL_FORMAT := "BGRA_8888"
+TARGET_RECOVERY_UI_LIB := librecovery_ui_betelgeuse
+TARGET_RELEASETOOLS_EXTENSIONS := device/samsung/betelgeuse
 
 BOARD_KERNEL_BASE := 0x10000000
 BOARD_PAGE_SIZE := 0x00000800
