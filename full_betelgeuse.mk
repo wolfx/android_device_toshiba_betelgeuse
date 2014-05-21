@@ -43,3 +43,5 @@ PRODUCT_DEVICE := betelgeuse
 PRODUCT_BRAND := toshiba
 PRODUCT_MODEL := folio100
 PRODUCT_MANUFACTURER := toshiba
+
+GAIA_DEVICE_TYPE := tablet
