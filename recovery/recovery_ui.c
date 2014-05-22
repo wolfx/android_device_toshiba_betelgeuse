@@ -15,28 +15,96 @@
  */
 
 #include <linux/input.h>
+#include <sys/stat.h>
+#include <errno.h>
+#include <string.h>
 
-#include "recovery_ui.h"
 #include "common.h"
-#include "extendedcommands.h"
+#include "device.h"
+#include "screen_ui.h"
 
-int device_toggle_display(volatile char* key_pressed, int key_code) {
-	return 0;
-}
+const char* HEADERS[] = { "Volume up/down to move highlight;",
+                          "power button to select.",
+                          "",
+                          NULL };
 
-int device_handle_key(int key_code, int visible) {
-    if (visible) {
-        switch (key_code) {
-            case KEY_VOLUMEUP:
-                return HIGHLIGHT_DOWN;
+const char* ITEMS[] = { "reboot system now",
+                        "apply update from ADB",
+                        "wipe data/factory reset",
+                        "wipe cache partition",
+                        NULL };
 
+class BetelgeuseUI : public ScreenRecoveryUI
+{
+public:
+    BetelgeuseUI() :
+        consecutive_power_keys(0) {
+    }
+
+    virtual KeyAction CheckKey(int key) {
+        if (IsKeyPressed(KEY_POWER) && key == KEY_VOLUMEUP) {
+            return TOGGLE;
+        }
+        if (key == KEY_POWER) {
+            ++consecutive_power_keys;
+            if (consecutive_power_keys >= 7) {
+                return REBOOT;
+            }
+        } else {
+            consecutive_power_keys = 0;
+        }
+        return ENQUEUE;
+    }
+
+private:
+    int consecutive_power_keys;
+};
+
+class BetelgeuseDevice : public Device
+{
+public:
+    BetelgeuseDevice() :
+        ui(new BetelgeuseUI) {
+    }
+
+    RecoveryUI* GetUI() { return ui; }
+
+    int HandleMenuKey(int key_code, int visible) {
+        if (visible) {
+            switch (key_code) {
+            case KEY_DOWN:
             case KEY_VOLUMEDOWN:
-                return HIGHLIGHT_UP;
+                return kHighlightDown;
+
+            case KEY_UP:
+            case KEY_VOLUMEUP:
+                return kHighlightUp;
 
             case KEY_POWER:
-                    return SELECT_ITEM;
+                return kInvokeItem;
+            }
+        }
+
+        return kNoAction;
+    }
+
+    BuiltinAction InvokeMenuItem(int menu_position) {
+        switch (menu_position) {
+        case 0: return REBOOT;
+        case 1: return APPLY_ADB_SIDELOAD;
+        case 2: return WIPE_DATA;
+        case 3: return WIPE_CACHE;
+        default: return NO_ACTION;
         }
     }
 
-    return NO_ACTION;
+    const char* const* GetMenuHeaders() { return HEADERS; }
+    const char* const* GetMenuItems() { return ITEMS; }
+
+private:
+    RecoveryUI* ui;
+};
+
+Device* make_device() {
+    return new BetelgeuseDevice;
 }

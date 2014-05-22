@@ -4,6 +4,8 @@ USE_CAMERA_STUB := false
 # inherit from the proprietary version
 -include vendor/toshiba/betelgeuse/BoardConfigVendor.mk
 
+TARGET_GLOBAL_CFLAGS += -mfpu=vfpv3-d16 -mfloat-abi=softfp
+TARGET_GLOBAL_CPPFLAGS += -mfpu=vfpv3-d16 -mfloat-abi=softfp
 TARGET_BOARD_PLATFORM := tegra
 TARGET_BOARD_INFO_FILE := device/toshiba/betelgeuse/board-info.txt
 TARGET_CPU_ABI := armeabi-v7a
@@ -16,6 +18,10 @@ TARGET_CPU_SMP := true
 
 TARGET_NO_BOOTLOADER := true
 TARGET_BOOTLOADER_BOARD_NAME := betelgeuse
+BUILD_KERNEL := true
+
+TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
+TARGET_RECOVERY_UI_LIB := librecovery_ui_betelgeuse
 
 ARCH_ARM_HAVE_TLS_REGISTER := true
 
