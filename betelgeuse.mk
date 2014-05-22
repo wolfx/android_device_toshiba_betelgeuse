@@ -144,4 +144,4 @@ PRODUCT_PACKAGES += \
    mkfs.vfat
 
 $(call inherit-product-if-exists, vendor/toshiba/betelgeuse/device-vendor.mk)
-$(call inherit-product, frameworks/native/build/phone-hdpi-512-dalvik-heap.mk)
+#$(call inherit-product, frameworks/native/build/phone-hdpi-512-dalvik-heap.mk)
