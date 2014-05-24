@@ -4,6 +4,8 @@ USE_CAMERA_STUB := false
 # inherit from the proprietary version
 -include vendor/toshiba/betelgeuse/BoardConfigVendor.mk
 
+TARGET_GLOBAL_CFLAGS += -mfpu=vfpv3-d16 -mfloat-abi=softfp
+TARGET_GLOBAL_CPPFLAGS += -mfpu=vfpv3-d16 -mfloat-abi=softfp
 TARGET_BOARD_PLATFORM := tegra
 TARGET_BOARD_INFO_FILE := device/toshiba/betelgeuse/board-info.txt
 TARGET_CPU_ABI := armeabi-v7a
@@ -55,7 +57,7 @@ BOARD_KERNEL_CMDLINE := no_console_suspend=1 console=tty0,115200n8 video=tegrafb
 
 TARGET_RECOVERY_PIXEL_FORMAT := "BGRA_8888"
 TARGET_RECOVERY_UI_LIB := librecovery_ui_betelgeuse
-TARGET_RELEASETOOLS_EXTENSIONS := device/samsung/betelgeuse
+TARGET_RELEASETOOLS_EXTENSIONS := device/toshiba/betelgeuse
 
 BOARD_KERNEL_BASE := 0x10000000
 BOARD_PAGE_SIZE := 0x00000800
