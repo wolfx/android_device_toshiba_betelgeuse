@@ -22,6 +22,7 @@ BUILD_KERNEL := true
 
 TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
 TARGET_RECOVERY_UI_LIB := librecovery_ui_betelgeuse
+TARGET_RELEASETOOLS_EXTENSIONS := device/toshiba/betelgeuse
 
 ARCH_ARM_HAVE_TLS_REGISTER := true
 
@@ -31,7 +32,7 @@ USE_OPENGL_RENDERER := true
 TARGET_NO_RADIOIMAGE := true
 
 # custom recovery ui
-BOARD_CUSTOM_RECOVERY_KEYMAPPING := ../../device/toshiba/betelgeuse/recovery/recovery_ui.c
+# BOARD_CUSTOM_RECOVERY_KEYMAPPING := ../../device/toshiba/betelgeuse/recovery/recovery_ui.c
 
 # Wifi related defines
 WPA_SUPPLICANT_VERSION			:= VER_0_8_X
