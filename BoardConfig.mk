@@ -20,10 +20,6 @@ TARGET_NO_BOOTLOADER := true
 TARGET_BOOTLOADER_BOARD_NAME := betelgeuse
 BUILD_KERNEL := true
 
-TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
-TARGET_RECOVERY_UI_LIB := librecovery_ui_betelgeuse
-TARGET_RELEASETOOLS_EXTENSIONS := device/toshiba/betelgeuse
-
 ARCH_ARM_HAVE_TLS_REGISTER := true
 
 USE_OPENGL_RENDERER := true
@@ -54,6 +50,10 @@ BOARD_HAVE_BLUETOOTH := true
 BOARD_HAVE_BLUETOOTH_HCI = true
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/toshiba/betelgeuse/bluetooth
 BLUETOOTH_HCIATTACH_USING_PROPERTY = true
+
+TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
+TARGET_RECOVERY_UI_LIB := librecovery_ui_betelgeuse
+TARGET_RELEASETOOLS_EXTENSIONS := device/toshiba/betelgeuse
 
 ### Partitioning table by vendor ###
 # For 8 GB devices
