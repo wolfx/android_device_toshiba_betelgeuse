@@ -131,6 +131,12 @@ PRODUCT_PACKAGES += \
     wmiconfig \
     setup_fs
 
+# Kernel
+LOCAL_KERNEL := device/toshiba/betelgeuse/kernel
+
+PRODUCT_COPY_FILES += \
+    $(LOCAL_KERNEL):kernel
+
 # 3G
 PRODUCT_PACKAGES += rild
 
