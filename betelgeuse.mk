@@ -104,9 +104,17 @@ PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
 ADDITIONAL_DEFAULT_PROPERTIES += ro.secure=0
 ADDITIONAL_DEFAULT_PROPERTIES += persist.sys.strictmode.visual=0
 
+#no home key
+PRODUCT_PROPERTY_OVERRIDES += \
+ro.moz.has_home_button=0
+
 PRODUCT_CHARACTERISTICS := tablet
 
-PRODUCT_AAPT_CONFIG := xlarge mdpi
+# OTA
+ENABLE_LIBRECOVERY := true
+
+PRODUCT_AAPT_CONFIG := xlarge mdpi large
+PRODUCT_AAPT_PREF_CONFIG := mdpi
 
 DEVICE_PACKAGE_OVERLAYS := \
     device/toshiba/betelgeuse/overlay
