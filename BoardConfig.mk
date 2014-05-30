@@ -19,6 +19,10 @@ TARGET_CPU_SMP := true
 TARGET_NO_BOOTLOADER := true
 TARGET_BOOTLOADER_BOARD_NAME := betelgeuse
 
+TARGET_PROVIDES_INIT := true
+TARGET_PROVIDES_INIT_RC := true
+TARGET_PROVIDES_INIT_TARGET_RC := true
+
 ARCH_ARM_HAVE_TLS_REGISTER := true
 
 USE_OPENGL_RENDERER := true
@@ -58,6 +62,8 @@ TARGET_RECOVERY_UI_LIB := librecovery_ui_betelgeuse
 
 ### New partition table ###
 BOARD_KERNEL_CMDLINE := console=tty0,115200n8 video=tegrafb androidboot.hardware=betelgeuse tegrapart=mmcblk0=system:122b00:40000:800,cache:20900:80000:800,misc:a0900:400:800,linux:a0e00:1000:800,userdata:162b00:607900:800,recovery:122000:a00:800
+
+TARGET_PREBUILT_KERNEL := device/toshiba/betelgeuse/kernel
 
 BOARD_KERNEL_BASE := 0x10000000
 BOARD_PAGE_SIZE := 0x00000800
